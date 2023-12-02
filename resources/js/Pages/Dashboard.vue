@@ -12,17 +12,17 @@
         <div class="grid grid-cols-1 lg:grid-cols-7 pb-5 ">
 
        <div class="px-2">
-        <div class="text-center text-lg text-red-600  ">From</div>
+        <div class="text-center text-lg text-blue-600  ">From</div>
        <input v-model="formData.field1" type="text" class=" w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300">
       </div>
 
       <div class="px-2" >
-        <div class="text-center text-lg text-red-600  ">To</div>
+        <div class="text-center text-lg text-blue-600  ">To</div>
         <input v-model="formData.field2" type="text" class=" w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300">
       </div>
 
       <div class="px-2">
-            <div class="text-center text-lg text-red-600">Vehicle</div>
+            <div class="text-center text-lg text-blue-600">Vehicle</div>
             <select v-model="formData.vehicle" @change="updateFixedCost(index)" class="w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300">
               <option value="bus">Bus</option>
               <option value="bike">Bike</option>
@@ -31,37 +31,37 @@
             </select>
           </div>
           <div class="px-2">
-            <div class="text-center text-lg text-red-600">Fixed cost</div>
+            <div class="text-center text-lg text-blue-600">Fixed cost</div>
             <input v-model="formData.fixedCost" type="text" class="w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300">
           </div>
 
         <div class="px-2">
-             <div class="text-center text-lg text-red-600">Cost</div>
-            <div class-=" flex flex-row">
-                <div>
-                    <input
-                 v-model="formData.cost"
-                :class="{ 'bg-green-200': formData.fixedCost === formData.cost }"
-                 type="text"
-                class="w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
-                >
-                </div>
+             <div class="text-center text-lg text-blue-600">Cost</div>
+             <div class="relative">
+    <input
+        v-model="formData.cost"
+        :class="{ 'bg-green-200': formData.fixedCost === formData.cost, 'bg-red-200': formData.fixedCost !== formData.cost }"
+        type="text"
+        class="w-full border border-gray-300 rounded-md pr-10 focus:outline-none focus:ring focus:border-blue-300"
+    >
 
-                <div>
-                    <input
-                     v-model="formData.checkboxValue"
-                     type="checkbox"
-                    :checked="formData.fixedCost === formData.cost"
-                    class="rounded-xl"
-                    >
-                </div>
+    <!-- Checkbox -->
+    <div class="absolute inset-y-0 right-0 flex items-center pr-2">
+        <input
+            v-model="formData.checkboxValue"
+            type="checkbox"
+            :checked="formData.fixedCost === formData.cost"
+            :class="{ 'bg-green-500': formData.fixedCost === formData.cost, 'bg-red-500': formData.fixedCost !== formData.cost }"
+            class="rounded-xl"
+        >
+    </div>
+</div>
 
-            </div>
 
         </div>
 
   <div class="px-2">
-    <div class="text-center text-lg text-red-600">File Upload</div>
+    <div class="text-center text-lg text-blue-600">File Upload</div>
     <div class="flex justify-center items-center">
       <label for="file-input" class=" bg-gradient-to-r from-fuchsia-400 to-violet-400 relative cursor-pointer  text-white font-bold py-2 px-14 rounded focus:outline-none focus:shadow-outline-blue active:bg-blue-800">
         <svg class="absolute left-0 top-0 m-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
@@ -75,7 +75,7 @@
   </div>
 
       <div class="px-2" >
-        <div class="text-center text-lg text-red-600  ">Describe</div>
+        <div class="text-center text-lg text-blue-600  ">Describe</div>
         <input v-model="formData.field7" type="text" class=" w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300">
       </div>
       <!-- Repeat the structure for other fields -->
