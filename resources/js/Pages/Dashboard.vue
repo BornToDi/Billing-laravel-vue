@@ -2,14 +2,14 @@
 
     <div class="bg-slate-50   rounded-lg border-yellow-300 container mx-auto md:mt-10">
 
-        <div class=" bg-gradient-to-r from-fuchsia-400 to-violet-400 rounded-full w-52 mx-auto text-center text-white text-bold py-2 my-6">Submit your form</div>
+        <div class=" bg-gradient-to-r from-blue-600 to-blue-400 rounded-full w-52 mx-auto text-center text-white text-bold py-2 my-6">Submit your form</div>
 
       <!---->
       <form class="" @submit.prevent="submitForm">
     <div v-for="(formData, index) in formDatas" :key="index" >
         <div class="border-2 border-slate-400 rounded-lg pt-10">
 
-        <div class="grid grid-cols-1 lg:grid-cols-7 pb-5 ">
+        <div class="grid grid-cols-1 lg:grid-cols-8 pb-5 ">
 
        <div class="px-2">
         <div class="text-center text-lg text-blue-600  ">From</div>
@@ -63,7 +63,7 @@
   <div class="px-2">
     <div class="text-center text-lg text-blue-600">File Upload</div>
     <div class="flex justify-center items-center">
-      <label for="file-input" class=" bg-gradient-to-r from-fuchsia-400 to-violet-400 relative cursor-pointer  text-white font-bold py-2 px-14 rounded focus:outline-none focus:shadow-outline-blue active:bg-blue-800">
+      <label for="file-input" class=" bg-gradient-to-r from-blue-500 to-blue-300 relative cursor-pointer  text-white font-bold py-2 px-14 rounded focus:outline-none focus:shadow-outline-blue active:bg-blue-800">
         <svg class="absolute left-0 top-0 m-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
         </svg>
@@ -78,6 +78,12 @@
         <div class="text-center text-lg text-blue-600  ">Describe</div>
         <input v-model="formData.field7" type="text" class=" w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300">
       </div>
+
+      <div class="px-2 ">
+    <div class="text-center text-lg text-blue-600">Remove</div>
+    <button @click="removeItem(index)" class="container mx-auto py-2 rounded-lg bg-red-100 transition-all duration-300 hover:bg-red-300 text-red-500">❌</button>
+
+</div>
       <!-- Repeat the structure for other fields -->
     </div>
 
@@ -85,13 +91,13 @@
 
     </div>
     <div class="flex items-center pt-5">
-    <button class="mx-auto px-8 mb-5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2  rounded focus:outline-none focus:shadow-outline-blue active:bg-blue-800" type="submit">Submit</button>
+    <button class="mx-auto px-8 mb-5 bg-blue-500 hover:bg-gradient-to-r from-blue-600 to-blue-400 text-white font-bold py-2  rounded focus:outline-none focus:shadow-outline-blue active:bg-blue-800" type="submit">Submit</button>
     </div>
     </form>
     </div>
 
     <div class="flex items-center pt-5 ">
-      <button @click.prevent="addMore" class="bg-gradient-to-r from-violet-600 to-fuchsia-400 mx-auto px-20 my-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2  rounded focus:outline-none focus:shadow-outline-blue active:bg-blue-800">
+      <button @click.prevent="addMore" class="bg-gradient-to-r from-blue-600 to-blue-400 mx-auto px-20 my-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2  rounded focus:outline-none focus:shadow-outline-blue active:bg-blue-800">
         Add More
       </button>
       </div>
@@ -180,6 +186,10 @@ submitForm() {
         default:
           return '';
       }
+    },
+    removeItem(index) {
+        // Implement the logic to remove the form data at the specified index
+        this.formDatas.splice(index, 1);
     },
     },
   };
