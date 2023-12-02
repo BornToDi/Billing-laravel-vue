@@ -2,13 +2,13 @@
 
     <div class="bg-slate-50   rounded-lg border-yellow-300 container mx-auto md:mt-10">
 
-
+        <div class=" bg-gradient-to-r from-fuchsia-400 to-violet-400 rounded-full w-52 mx-auto text-center text-white text-bold py-2 my-6">Submit your form</div>
 
       <!---->
       <form class="" @submit.prevent="submitForm">
     <div v-for="(formData, index) in formDatas" :key="index" >
-        <div class="border-2 border-slate-400 rounded-lg ">
-            <div class=" bg-green-400 rounded-full w-52 mx-auto text-center text-white text-bold py-2 my-6">Submit your form</div>
+        <div class="border-2 border-slate-400 rounded-lg pt-10">
+
         <div class="grid grid-cols-1 lg:grid-cols-7 pb-5 ">
 
        <div class="px-2">
@@ -35,26 +35,41 @@
             <input v-model="formData.fixedCost" type="text" class="w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300">
           </div>
 
-          <div class="px-2">
+        <div class="px-2">
              <div class="text-center text-lg text-red-600">Cost</div>
-             <input
-             v-model="formData.cost"
-             :class="{ 'bg-green-200': formData.fixedCost === formData.cost }"
-             type="text"
-      class="w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
-    >
-  </div>
+            <div class-=" flex flex-row">
+                <div>
+                    <input
+                 v-model="formData.cost"
+                :class="{ 'bg-green-200': formData.fixedCost === formData.cost }"
+                 type="text"
+                class="w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
+                >
+                </div>
+
+                <div>
+                    <input
+                     v-model="formData.checkboxValue"
+                     type="checkbox"
+                    :checked="formData.fixedCost === formData.cost"
+                    class="rounded-xl"
+                    >
+                </div>
+
+            </div>
+
+        </div>
 
   <div class="px-2">
     <div class="text-center text-lg text-red-600">File Upload</div>
     <div class="flex justify-center items-center">
-      <label for="file-input" class="relative cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-14 rounded focus:outline-none focus:shadow-outline-blue active:bg-blue-800">
+      <label for="file-input" class=" bg-gradient-to-r from-fuchsia-400 to-violet-400 relative cursor-pointer  text-white font-bold py-2 px-14 rounded focus:outline-none focus:shadow-outline-blue active:bg-blue-800">
         <svg class="absolute left-0 top-0 m-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
         </svg>
         File
       </label>
-      <input id="file-input" type="file" class="hidden" @change="handleFileChange($event, index)">
+      <input id="file-input" type="file" class="hidden " @change="handleFileChange($event, index)">
 
     </div>
   </div>
@@ -75,11 +90,13 @@
     </form>
     </div>
 
-    <div class="flex items-center pt-5">
-      <button @click.prevent="addMore" class="mx-auto px-20 my-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2  rounded focus:outline-none focus:shadow-outline-blue active:bg-blue-800">
+    <div class="flex items-center pt-5 ">
+      <button @click.prevent="addMore" class="bg-gradient-to-r from-violet-600 to-fuchsia-400 mx-auto px-20 my-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2  rounded focus:outline-none focus:shadow-outline-blue active:bg-blue-800">
         Add More
       </button>
       </div>
+
+
 
   </template>
 
@@ -95,6 +112,7 @@
             cost: '',
             field7: '',
             file: '',
+            checkboxValue: false,
           }
         ],
       };
@@ -114,10 +132,23 @@
   }
 },
 
-      submitForm() {
-        // Handle form submission here
-        console.log('Form submitted with data:', this.formDatas);
-      },
+submitForm() {
+  // Handle form submission here
+  console.log('Form submitted with data:', this.formDatas);
+
+  // Reset input values after form submission
+  this.formDatas = [
+    {
+      field1: '',
+      field2: '',
+      fixedCost: '',
+      cost: '',
+      field7: '',
+      file: '',
+      checkboxValue: false,
+    }
+  ];
+},
       addMore() {
         // Add a new empty form data set
         this.formDatas.push({
