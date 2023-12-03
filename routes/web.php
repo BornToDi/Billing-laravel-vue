@@ -23,6 +23,10 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+Route::get('/profile', function () {
+    return Inertia::render('profile');
+});
+
 
 Route::middleware([
     'auth:sanctum',
